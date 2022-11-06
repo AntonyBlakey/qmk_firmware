@@ -144,9 +144,9 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             if (keymap_key_to_keycode(layer, (keypos_t){col,row}) > KC_TRNS) {
                 uint8_t index = g_led_config.matrix_co[row][col];
                 if (layer == 0)
-                    rgb_matrix_set_color(index, RGB_CYAN);
+                    rgb_matrix_set_color(index, RGB_WHITE);
                 else if (layer == 1)
-                    rgb_matrix_set_color(index, RGB_BLUE);
+                    rgb_matrix_set_color(index, RGB_CYAN);
                 else if (layer == 2)
                     rgb_matrix_set_color(index, RGB_GREEN);
                 else if (layer == 3)
