@@ -20,21 +20,29 @@ enum keycodes {
     OS_CMD,
 };
 
-enum { TD_SCLN_COLN };
+enum { TD_SCLN_COLN, TD_E_ESC, TD_A_GA, TD_Z_GZ, TD_X_GX, TD_C_GC, TD_V_GV };
 
 #define TH_TAB MT(MOD_LSFT, KC_TAB)
 #define TH_SPC LT(NAV, KC_SPC)
 #define TH_ENT LT(SYM, KC_ENT)
+
 #define TD_SCLN TD(TD_SCLN_COLN)
+#define TD_E TD(TD_E_ESC)
+#define TD_A TD(TD_A_GA)
+#define TD_Z TD(TD_Z_GZ)
+#define TD_X TD(TD_X_GX)
+#define TD_C TD(TD_C_GC)
+#define TD_V TD(TD_V_GV)
+
 #define LNCHBAR G(KC_SPC)
 #define VSTERM C(KC_GRV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT_moonlander(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-        XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,          XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX, 
-        XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    XXXXXXX,          XXXXXXX, KC_H,    KC_J,    KC_K,    KC_L,    KC_ESC,  XXXXXXX,
-        XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  TD_SCLN, XXXXXXX,
+        XXXXXXX, KC_Q,    KC_W,    TD_E,    KC_R,    KC_T,    XXXXXXX,          XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX, 
+        XXXXXXX, TD_A,    KC_S,    KC_D,    KC_F,    KC_G,    XXXXXXX,          XXXXXXX, KC_H,    KC_J,    KC_K,    KC_L,    KC_ESC,  XXXXXXX,
+        XXXXXXX, TD_Z,    TD_X,    TD_C,    TD_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  TD_SCLN, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, TH_TAB,  TH_SPC,           XXXXXXX,          XXXXXXX,          TH_ENT,  KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
@@ -143,5 +151,11 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN)
+    [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
+    [TD_E_ESC] = ACTION_TAP_DANCE_DOUBLE(KC_E, KC_ESC),
+    [TD_A_GA] = ACTION_TAP_DANCE_DOUBLE(KC_A, G(KC_A)),
+    [TD_Z_GZ] = ACTION_TAP_DANCE_DOUBLE(KC_Z, G(KC_Z)),
+    [TD_X_GX] = ACTION_TAP_DANCE_DOUBLE(KC_X, G(KC_X)),
+    [TD_C_GC] = ACTION_TAP_DANCE_DOUBLE(KC_C, G(KC_C)),
+    [TD_V_GV] = ACTION_TAP_DANCE_DOUBLE(KC_V, G(KC_V)),
 };
