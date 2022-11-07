@@ -16,14 +16,27 @@
             margin-bottom: 2rem;
         }
 
+        div.layer span.hold {
+            border: 1px solid #ccc;
+        }
+        
+        div.layer.layer1 span.hold {
+            border: 1px solid rgb(0, 187, 255)
+        }
         div.layer.layer1 div.key {
             outline: 1px solid rgb(0, 187, 255)
         }
 
+        div.layer.layer2 span.hold {
+            border: 1px solid rgb(0, 192, 3);
+        }
         div.layer.layer2 div.key {
             outline: 1px solid rgb(0, 192, 3);
         }
 
+        div.layer.layer3 span.hold {
+            border: 1px solid red;
+        }
         div.layer.layer3 div.key {
             outline: 1px solid red;
         }
@@ -36,8 +49,29 @@
         div.row>div {
             padding: 0.7rem;
             margin: 0.3rem;
-            border-radius: 10px;
+            border-radius: 5px;
             aspect-ratio: 3/2;
+            position: relative;
+        }
+
+        div.row>div:nth-child(6n-5) {
+            top: 0.5rem;
+        }
+
+        div.row>div:nth-child(6n-4) {
+            top: 0.25rem;
+        }
+
+        div.row>div:nth-child(6n-3) {
+            top: 0rem;
+        }
+
+        div.row>div:nth-child(6n-2) {
+            top: 0.25rem;
+        }
+
+        div.row>div:nth-child(6n-1) {
+            top: 0.5rem;
         }
 
         div.key {
@@ -45,8 +79,6 @@
             text-align: center;
             outline: 1px solid #eee;
         }
-
-        div.punct {}
 
         div.symbol {
             font-size: 120%;
@@ -71,6 +103,10 @@
             background-color: red;
             color: white;
         }
+
+    span.hold {border-top:0!important;border-left:0!important;padding:2px 3px;display:inline-block; position: absolute; top: 0rem; left: 0rem; font-size:1rem;}
+    span.tap {position: absolute; bottom: 0.4rem; right: 0.9rem; }
+
     </style>
     <title>Document</title>
 </head>
@@ -101,7 +137,7 @@
             <div class="key">j</div>
             <div class="key">k</div>
             <div class="key">l</div>
-            <div class="key punct">:&nbsp;&nbsp;;</div>
+            <div class="key symbol">⎋</div>
         </div>
         <div class="row">
             <div class="key">z</div>
@@ -112,27 +148,27 @@
             <div></div>
             <div class="key">n</div>
             <div class="key">m</div>
-            <div class="key punct">&lt;&nbsp;&nbsp;,</div>
-            <div class="key punct">&gt;&nbsp;&nbsp;.</div>
-            <div class="key symbol">⎋</div>
+            <div class="key punct">,</div>
+            <div class="key punct">.</div>
+            <div class="key punct">;</div>
         </div>
         <div class="row">
             <div></div>
             <div></div>
-            <div class="key">nav</div>
-            <div class="key symbol">⇪</div>
+            <div class="key"><span class="hold symbol">⇪</span><span class="tap">⇥</span></div>
+            <div class="key"><span class="hold">N</span><span class="tap">␣</span></div>
             <div></div>
             <div></div>
             <div></div>
-            <div class="key symbol">␣</div>
-            <div class="key">sym</div>
+            <div class="key"><span class="hold">S</span><span class="tap">⏎</span></div>
+            <div class="key symbol">⌫</div>
             <div></div>
             <div></div>
         </div>
     </div>
     <div class="layer layer1">
         <div class="row">
-            <div class="key punct">?</div>
+            <div class="key punct">&lt;</div>
             <div class="key punct">[</div>
             <div class="key punct">{</div>
             <div class="key punct">(</div>
@@ -142,7 +178,7 @@
             <div class="key punct">)</div>
             <div class="key punct">}</div>
             <div class="key punct">]</div>
-            <div class="key punct">@</div>
+            <div class="key punct">&gt;</div>
         </div>
         <div class="row">
             <div class="key punct">`</div>
@@ -151,11 +187,11 @@
             <div class="key punct">$</div>
             <div class="key punct">#</div>
             <div></div>
-            <div class="key punct">_</div>
-            <div class="key symbol">⌘</div>
-            <div class="key symbol">⌥</div>
-            <div class="key symbol">⌤</div>
-            <div class="key symbol">⇪</div>
+            <div class="key punct">+</div>
+            <div class="key punct">-</div>
+            <div class="key punct">*</div>
+            <div class="key punct">%</div>
+            <div class="key symbol">⎋</div>
         </div>
         <div class="row">
             <div class="key punct">!</div>
@@ -164,39 +200,39 @@
             <div class="key punct">|</div>
             <div class="key punct">^</div>
             <div></div>
-            <div class="key punct">+</div>
-            <div class="key punct">-</div>
-            <div class="key punct">*</div>
-            <div class="key punct">%</div>
-            <div class="key symbol">=</div>
+            <div class="key punct">@</div>
+            <div class="key punct">_</div>
+            <div class="key punct">?</div>
+            <div class="key punct">=</div>
+            <div class="key punct">:</div>
         </div>
         <div class="row">
             <div></div>
             <div></div>
-            <div class="key">nav</div>
-            <div class="key symbol">⇪</div>
+            <div class="key"><span class="hold symbol">⇪</span><span class="tap">⇥</span></div>
+            <div class="key"><span class="hold">N</span><span class="tap">␣</span></div>
             <div></div>
             <div></div>
             <div></div>
-            <div class="key symbol">␣</div>
-            <div class="key layer1">sym</div>
+            <div class="key layer1"><span class="hold">S</span></div>
+            <div class="key symbol">⌫</div>
             <div></div>
             <div></div>
         </div>
     </div>
     <div class="layer layer2">
         <div class="row">
-            <div class="key symbol">⎋</div>
-            <div class="key punct">⌘-␣</div>
             <div class="empty"></div>
             <div class="empty"></div>
-            <div class="key symbol">️⏯</div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
             <div></div>
             <div class="key symbol">⇤</div>
+            <div class="empty"></div>
+            <div class="empty"></div>
             <div class="key symbol">⇥</div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="key symbol">⌦</div>
+            <div class="key symbol">️⏯</div>
         </div>
         <div class="row">
             <div class="key symbol">⇪</div>
@@ -209,7 +245,7 @@
             <div class="key symbol">↓</div>
             <div class="key symbol">↑</div>
             <div class="key symbol">→</div>
-            <div class="key symbol">⌫</div>
+            <div class="key symbol">⎋</div>
         </div>
         <div class="row">
             <div class="empty"></div>
@@ -219,21 +255,21 @@
             <div class="empty"></div>
             <div></div>
             <div class="key symbol">⇱</div>
-            <div class="key symbol">⇞</div>
             <div class="key symbol">⇟</div>
+            <div class="key symbol">⇞</div>
             <div class="key symbol">⇲</div>
-            <div class="key symbol">⏎</div>
+            <div class="empty"></div>
         </div>
         <div class="row">
             <div></div>
             <div></div>
-            <div class="key layer2">nav</div>
-            <div class="key symbol">⇪</div>
+            <div class="key"><span class="hold symbol">⇪</span><span class="tap">⇥</span></div>
+            <div class="key layer2"><span class="hold">N</span></div>
             <div></div>
             <div></div>
             <div></div>
-            <div class="key symbol">␣</div>
-            <div class="key">sym</div>
+            <div class="key"><span class="hold">S</span><span class="tap">⏎</span></div>
+            <div class="key symbol">⌫</div>
             <div></div>
             <div></div>
         </div>
@@ -253,17 +289,17 @@
             <div class="key">0️</div>
         </div>
         <div class="row">
-            <div class="key symbol">⇪</div>
-            <div class="key symbol">⌤</div>
-            <div class="key symbol">⌥</div>
-            <div class="key symbol">⌘</div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
             <div class="key">F11</div>
             <div></div>
             <div class="key">F12</div>
-            <div class="key symbol">⌘</div>
-            <div class="key symbol">⌥</div>
-            <div class="key symbol">⌤</div>
-            <div class="key symbol">⇪</div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="key symbol">⎋</div>
         </div>
         <div class="row">
             <div class="key">F1</div>
@@ -281,13 +317,13 @@
         <div class="row">
             <div></div>
             <div></div>
-            <div class="key layer3">nav</div>
-            <div class="key symbol">⇪</div>
+            <div class="key"><span class="hold symbol">⇪</span><span class="tap">⇥</span></div>
+            <div class="key layer3"><span class="hold">N</span></div>
             <div></div>
             <div></div>
             <div></div>
-            <div class="key symbol">␣</div>
-            <div class="key layer3">sym</div>
+            <div class="key layer3"><span class="hold">S</span></div>
+            <div class="key symbol">⌫</div>
             <div></div>
             <div></div>
         </div>
