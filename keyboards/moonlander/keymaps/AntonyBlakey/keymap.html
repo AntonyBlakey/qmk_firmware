@@ -19,10 +19,11 @@
         div.layer span.hold {
             border: 1px solid #ccc;
         }
-        
+
         div.layer.layer1 span.hold {
             border: 1px solid rgb(0, 187, 255)
         }
+
         div.layer.layer1 div.key {
             outline: 1px solid rgb(0, 187, 255)
         }
@@ -30,6 +31,7 @@
         div.layer.layer2 span.hold {
             border: 1px solid rgb(0, 192, 3);
         }
+
         div.layer.layer2 div.key {
             outline: 1px solid rgb(0, 192, 3);
         }
@@ -37,6 +39,7 @@
         div.layer.layer3 span.hold {
             border: 1px solid red;
         }
+
         div.layer.layer3 div.key {
             outline: 1px solid red;
         }
@@ -80,6 +83,11 @@
             outline: 1px solid #eee;
         }
 
+        div.app {
+            font-size: 0.7rem;
+            outline-style: dashed !important;
+        }
+
         div.symbol {
             font-size: 120%;
         }
@@ -104,9 +112,22 @@
             color: white;
         }
 
-    span.hold {border-top:0!important;border-left:0!important;padding:2px 3px;display:inline-block; position: absolute; top: 0rem; left: 0rem; font-size:1rem;}
-    span.tap {position: absolute; bottom: 0.4rem; right: 0.9rem; }
+        span.hold {
+            border-top: 0 !important;
+            border-left: 0 !important;
+            padding: 2px 3px;
+            display: inline-block;
+            position: absolute;
+            top: 0rem;
+            left: 0rem;
+            font-size: 1rem;
+        }
 
+        span.tap {
+            position: absolute;
+            bottom: 0.4rem;
+            right: 0.9rem;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -226,7 +247,7 @@
             <div class="empty"></div>
             <div class="empty"></div>
             <div class="empty"></div>
-            <div class="empty"></div>
+            <div class="key app">vsc term</div>
             <div></div>
             <div class="key symbol">⇤</div>
             <div class="empty"></div>
@@ -252,7 +273,7 @@
             <div class="empty"></div>
             <div class="empty"></div>
             <div class="empty"></div>
-            <div class="empty"></div>
+            <div class="key app">launch bar</div>
             <div></div>
             <div class="key symbol">⇱</div>
             <div class="key symbol">⇟</div>

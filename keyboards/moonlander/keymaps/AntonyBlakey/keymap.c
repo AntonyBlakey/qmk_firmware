@@ -20,16 +20,21 @@ enum keycodes {
     OS_CMD,
 };
 
+enum { TD_SCLN_COLN };
+
 #define TH_TAB MT(MOD_LSFT, KC_TAB)
 #define TH_SPC LT(NAV, KC_SPC)
 #define TH_ENT LT(SYM, KC_ENT)
+#define TD_SCLN TD(TD_SCLN_COLN)
+#define LNCHBAR G(KC_SPC)
+#define VSTERM C(KC_GRV)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT_moonlander(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,          XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX, 
         XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    XXXXXXX,          XXXXXXX, KC_H,    KC_J,    KC_K,    KC_L,    KC_ESC,  XXXXXXX,
-        XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SCLN, XXXXXXX,
+        XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  TD_SCLN, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, TH_TAB,  TH_SPC,           XXXXXXX,          XXXXXXX,          TH_ENT,  KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
@@ -45,9 +50,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV] = LAYOUT_moonlander(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, TABL,    XXXXXXX, XXXXXXX, KC_TAB,  KC_MPLY, XXXXXXX, 
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, VSTERM,  XXXXXXX,          XXXXXXX, TABL,    XXXXXXX, XXXXXXX, KC_TAB,  KC_MPLY, XXXXXXX, 
         XXXXXXX, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  XXXXXXX, XXXXXXX,          XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ESC,  XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LNCHBAR,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, TH_TAB,  TH_SPC,           XXXXXXX,          XXXXXXX,          TH_ENT,  KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
@@ -73,9 +78,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case TH_ENT:
-        case TH_SPC:
-        case TH_TAB:
+        case TH_SPC: 
         case OS_SHFT:
         case OS_CTRL:
         case OS_ALT:
@@ -105,19 +108,20 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    uint8_t layer = get_highest_layer(layer_state);
-    bool layer0 = layer == 0;
-    bool layer1 = layer == 1;
-    bool layer2 = layer == 2;
-    bool layer3 = layer == 3;
-
+    uint8_t layer  = get_highest_layer(layer_state);
+    bool    layer0 = layer == 0;
+    bool    layer1 = layer == 1;
+    bool    layer2 = layer == 2;
+    bool    layer3 = layer == 3;
 
     rgb_matrix_set_color_all(RGB_BLACK);
     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
             if (keymap_key_to_keycode(layer, (keypos_t){col, row}) > KC_TRNS) {
                 uint8_t index = g_led_config.matrix_co[row][col];
-                if (layer0)
+                if (os_alt_state != os_up_unqueued || os_ctrl_state != os_up_unqueued || os_shft_state != os_up_unqueued || os_cmd_state != os_up_unqueued) {
+                    rgb_matrix_set_color(index, RGB_MAGENTA);
+                } else if (layer0)
                     rgb_matrix_set_color(index, RGB_WHITE);
                 else if (layer1)
                     rgb_matrix_set_color(index, RGB_CYAN);
@@ -139,4 +143,5 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
+    [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN)
 };
