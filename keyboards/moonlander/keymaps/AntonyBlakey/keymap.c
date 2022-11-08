@@ -47,13 +47,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_LT,   KC_LBRC, KC_LCBR, KC_LPRN, KC_SLSH, XXXXXXX,          XXXXXXX, KC_BSLS, KC_RPRN, KC_RCBR, KC_RBRC, KC_GT,   XXXXXXX, 
         XXXXXXX, KC_GRV,  KC_QUOT, KC_DQUO, KC_DLR,  KC_HASH, XXXXXXX,          XXXXXXX, KC_PLUS, KC_MINS, KC_ASTR, KC_PERC, KC_ESC,  XXXXXXX,
         XXXXXXX, KC_EXLM, KC_TILD, KC_AMPR, KC_PIPE, KC_CIRC,                            KC_AT,   KC_UNDS, KC_QUES, KC_EQL,  KC_COLN, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_TAB,  TH_SPC,           XXXXXXX,          XXXXXXX,          TH_ENT,  KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS,  TH_SPC,           XXXXXXX,          XXXXXXX,          TH_ENT,  KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
 
     [NAV] = LAYOUT_moonlander(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, VSTERM,  XXXXXXX,          XXXXXXX, TABL,    XXXXXXX, XXXXXXX, KC_TAB,  KC_MPLY, XXXXXXX, 
+        XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LCMD, VSTERM,  XXXXXXX,          XXXXXXX, TABL,    XXXXXXX, XXXXXXX, KC_TAB,  KC_MPLY, XXXXXXX, 
         XXXXXXX, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  XXXXXXX, XXXXXXX,          XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_ESC,  XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, LNCHBAR,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, TH_TAB,  TH_SPC,           XXXXXXX,          XXXXXXX,          TH_ENT,  KC_BSPC, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -120,9 +120,16 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     rgb_matrix_set_color_all(RGB_BLACK);
     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
         for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
-            if (keymap_key_to_keycode(layer, (keypos_t){col, row}) > KC_TRNS) {
+            int keycode = keymap_key_to_keycode(layer, (keypos_t){col, row});
+            if (keycode > KC_TRNS) {
                 uint8_t index = g_led_config.matrix_co[row][col];
-                if (os_alt_state != os_up_unqueued || os_ctrl_state != os_up_unqueued || os_shft_state != os_up_unqueued || os_cmd_state != os_up_unqueued) {
+                if (keycode == KC_CAPS || keycode == TH_TAB) {
+                    if (host_keyboard_led_state().caps_lock) {
+                        rgb_matrix_set_color(index, RGB_MAGENTA);
+                    } else {
+                        rgb_matrix_set_color(index, RGB_WHITE);
+                    }
+                } else if (os_alt_state != os_up_unqueued || os_ctrl_state != os_up_unqueued || os_shft_state != os_up_unqueued || os_cmd_state != os_up_unqueued) {
                     rgb_matrix_set_color(index, RGB_MAGENTA);
                 } else if (layer0)
                     rgb_matrix_set_color(index, RGB_WHITE);
