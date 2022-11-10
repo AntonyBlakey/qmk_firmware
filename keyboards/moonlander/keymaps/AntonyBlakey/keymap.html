@@ -46,15 +46,16 @@
 
         div.row {
             display: grid;
-            grid-template-columns: repeat(11, 4.5rem);
+            grid-template-columns: repeat(11, 4.5rem)
         }
 
         div.row>div {
-            padding: 0.7rem;
+            padding: 0.7rem 0;
             margin: 0.3rem;
             border-radius: 5px;
+            vertical-align: middle;
             height:1.5rem;
-            width:2.25rem;
+            width:3.65rem;
             position: relative;
         }
 
@@ -87,10 +88,6 @@
         div.app {
             font-size: 0.7rem;
             outline-style: dashed !important;
-        }
-
-        div.symbol {
-            font-size: 120%;
         }
 
         div.oneshot::before {
@@ -140,7 +137,6 @@
 
         span.double-tap {
             position: absolute;
-            font-size: 0.75rem;
             top: 0.2rem;
             left: 0.2rem;
         }
@@ -151,7 +147,7 @@
 <body>
     <div class="layer">
         <div class="row">
-            <div class="key"><span class="double-tap">⎋</span>q</div>
+            <div class="key">q</div>
             <div class="key">w</div>
             <div class="key">e</div>
             <div class="key">r</div>
@@ -198,7 +194,7 @@
             <div></div>
             <div></div>
             <div class="key"><span class="hold">S</span><span class="tap">⏎</span></div>
-            <div class="key symbol">⌫</div>
+            <div class="key"><span class="hold symbol">⌅</span><span class="tap">⌫</span></div>
             <div></div>
             <div></div>
         </div>
@@ -252,7 +248,7 @@
             <div></div>
             <div></div>
             <div class="key layer1"><span class="hold">S</span></div>
-            <div class="key symbol">⌫</div>
+            <div class="key"><span class="hold symbol">⌅</span><span class="tap">⌫</span></div>
             <div></div>
             <div></div>
         </div>
@@ -263,39 +259,39 @@
             <div class="key symbol">⌅</div>
             <div class="key symbol">⌥</div>
             <div class="key symbol">⌘</div>
-            <div class="key app">vsc term</div>
+            <div class="key symbol">️⏯</div>
             <div></div>
             <div class="key symbol">⇤</div>
             <div class="empty"></div>
             <div class="empty"></div>
             <div class="key symbol">⇥</div>
-            <div class="key symbol">️⏯</div>
+            <div class="key">⌅`</div>
         </div>
         <div class="row">
             <div class="key symbol oneshot">⇪</div>
             <div class="key symbol oneshot">⌅</div>
             <div class="key symbol oneshot">⌥</div>
             <div class="key symbol oneshot">⌘</div>
-            <div class="empty"></div>
+            <div class="key symbol">⌘␣</div>
             <div></div>
             <div class="key symbol">←</div>
             <div class="key symbol">↓</div>
             <div class="key symbol">↑</div>
             <div class="key symbol">→</div>
-            <div class="key symbol">⎋</div>
+            <div class="key">⌘⇪P</div>
         </div>
         <div class="row">
             <div class="empty"></div>
             <div class="empty"></div>
             <div class="empty"></div>
             <div class="empty"></div>
-            <div class="key app">launch bar</div>
+            <div class="empty"></div>
             <div></div>
             <div class="key symbol">⇤</div>
             <div class="key symbol">⇊</div>
             <div class="key symbol">⇈</div>
             <div class="key symbol">⇥</div>
-            <div class="empty"></div>
+            <div class="key">⌘P</div>
         </div>
         <div class="row">
             <div></div>
@@ -306,38 +302,12 @@
             <div></div>
             <div></div>
             <div class="key"><span class="hold">S</span><span class="tap">⏎</span></div>
-            <div class="key symbol">⌫</div>
+            <div class="key"><span class="hold symbol">⌅</span><span class="tap">⌫</span></div>
             <div></div>
             <div></div>
         </div>
     </div>
     <div class="layer layer3">
-        <div class="row">
-            <div class="key">1</div>
-            <div class="key">2</div>
-            <div class="key">️3</div>
-            <div class="key">️4</div>
-            <div class="key">️5</div>
-            <div></div>
-            <div class="key">6</div>
-            <div class="key">7</div>
-            <div class="key">️8</div>
-            <div class="key">️9</div>
-            <div class="key">0️</div>
-        </div>
-        <div class="row">
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="key">F11</div>
-            <div></div>
-            <div class="key">F12</div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="empty"></div>
-            <div class="key symbol">⎋</div>
-        </div>
         <div class="row">
             <div class="key">F1</div>
             <div class="key">F2</div>
@@ -352,6 +322,32 @@
             <div class="key">F️10</div>
         </div>
         <div class="row">
+            <div class="key">1</div>
+            <div class="key">2</div>
+            <div class="key">️3</div>
+            <div class="key">️4</div>
+            <div class="key">️5</div>
+            <div></div>
+            <div class="key">6</div>
+            <div class="key">7</div>
+            <div class="key">️8</div>
+            <div class="key">️9</div>
+            <div class="key">0️</div>
+        </div>
+        <div class="row">
+            <div class="key">F11</div>
+            <div class="key">F12</div>
+            <div class="key">F13</div>
+            <div class="key">F14</div>
+            <div class="key">F15</div>
+            <div></div>
+            <div class="empty"></div>
+            <div class="empty"></div>
+            <div class="key punct">,</div>
+            <div class="key punct">.</div>
+            <div class="key punct">-</div>
+        </div>
+        <div class="row">
             <div></div>
             <div></div>
             <div class="key"><span class="hold symbol">⇪</span><span class="tap">⇥</span></div>
@@ -360,7 +356,7 @@
             <div></div>
             <div></div>
             <div class="key layer3"><span class="hold">S</span></div>
-            <div class="key symbol">⌫</div>
+            <div class="key"><span class="hold symbol">⌅</span><span class="tap">⌫</span></div>
             <div></div>
             <div></div>
         </div>
