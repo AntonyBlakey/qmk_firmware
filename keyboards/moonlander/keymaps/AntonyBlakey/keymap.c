@@ -83,7 +83,7 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
-        case TH_SFT: 
+        case TH_SPC: 
         case OS_SHFT:
         case OS_CTRL:
         case OS_ALT:
@@ -125,7 +125,7 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             int keycode = keymap_key_to_keycode(layer, (keypos_t){col, row});
             if (keycode > KC_TRNS) {
                 uint8_t index = g_led_config.matrix_co[row][col];
-                if (keycode == KC_CAPS || keycode == TH_SPC) {
+                if (keycode == KC_CAPS || keycode == TH_SFT) {
                     if (host_keyboard_led_state().caps_lock) {
                         rgb_matrix_set_color(index, RGB_MAGENTA);
                     } else {
