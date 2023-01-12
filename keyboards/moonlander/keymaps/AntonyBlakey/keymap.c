@@ -144,6 +144,9 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 } else if ((keycode == KC_F || keycode == KC_DLR || keycode == OS_CMD || keycode == KC_4) && os_cmd_state != os_up_unqueued) {
                     rgb_matrix_set_color(index, RGB_MAGENTA);
                     continue;
+                } else if (keycode == KC_BSPC) {
+                    rgb_matrix_set_color(index, RGB_RED);
+                    continue;
                 } else if (layer0)
                     rgb_matrix_set_color(index, RGB_WHITE);
                 else if (layer1)
