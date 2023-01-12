@@ -33,6 +33,10 @@ enum { TD_SCLN_COLN};
 #define C_GRV C(KC_GRV)
 #define G_P G(KC_P)
 #define GS_P G(S(KC_P))
+#define G_Z G(KC_Z)
+#define G_X G(KC_X)
+#define G_C G(KC_C)
+#define G_V G(KC_V)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT_moonlander(
@@ -49,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_LT,   KC_LBRC, KC_LCBR, KC_LPRN, KC_SLSH, XXXXXXX,          XXXXXXX, KC_BSLS, KC_RPRN, KC_RCBR, KC_RBRC, KC_GT,   XXXXXXX, 
         XXXXXXX, KC_GRV,  KC_QUOT, KC_DQUO, KC_DLR,  KC_HASH, XXXXXXX,          XXXXXXX, KC_PLUS, KC_MINS, KC_ASTR, KC_PERC, KC_ESC,  XXXXXXX,
         XXXXXXX, KC_EXLM, KC_TILD, KC_AMPR, KC_PIPE, KC_CIRC,                            KC_AT,   KC_UNDS, KC_QUES, KC_EQL,  KC_COLN, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM, TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM, TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
 
@@ -57,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
         XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LCMD, KC_MPLY, XXXXXXX,          XXXXXXX, TABL,    KC_BSPC, KC_ENT,  KC_TAB,  C_GRV,   XXXXXXX, 
         XXXXXXX, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  G_SPC,   XXXXXXX,          XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, GS_P,    XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  G_P,     XXXXXXX,
+        XXXXXXX, G_Z,     G_X,     G_C,     G_V,     XXXXXXX,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  G_P,     XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
@@ -125,14 +129,21 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             int keycode = keymap_key_to_keycode(layer, (keypos_t){col, row});
             if (keycode > KC_TRNS) {
                 uint8_t index = g_led_config.matrix_co[row][col];
-                if (keycode == KC_CAPS || keycode == TH_SFT) {
-                    if (host_keyboard_led_state().caps_lock) {
-                        rgb_matrix_set_color(index, RGB_MAGENTA);
-                    } else {
-                        rgb_matrix_set_color(index, RGB_WHITE);
-                    }
-                } else if (os_alt_state != os_up_unqueued || os_ctrl_state != os_up_unqueued || os_shft_state != os_up_unqueued || os_cmd_state != os_up_unqueued) {
+                if ((keycode == KC_CAPS || keycode == TH_SFT) && host_keyboard_led_state().caps_lock) {
                     rgb_matrix_set_color(index, RGB_MAGENTA);
+                    continue;
+                } else if ((keycode == KC_A || keycode == KC_GRV || keycode == OS_SHFT || keycode == KC_1) && os_shft_state != os_up_unqueued) {
+                    rgb_matrix_set_color(index, RGB_MAGENTA);
+                    continue;
+                } else if ((keycode == KC_S || keycode == KC_QUOT || keycode == OS_CTRL || keycode == KC_2) && os_ctrl_state != os_up_unqueued) {
+                    rgb_matrix_set_color(index, RGB_MAGENTA);
+                    continue;
+                } else if ((keycode == KC_D || keycode == KC_DQUO || keycode == OS_ALT || keycode == KC_3) && os_alt_state != os_up_unqueued) {
+                    rgb_matrix_set_color(index, RGB_MAGENTA);
+                    continue;
+                } else if ((keycode == KC_F || keycode == KC_DLR || keycode == OS_CMD || keycode == KC_4) && os_cmd_state != os_up_unqueued) {
+                    rgb_matrix_set_color(index, RGB_MAGENTA);
+                    continue;
                 } else if (layer0)
                     rgb_matrix_set_color(index, RGB_WHITE);
                 else if (layer1)
