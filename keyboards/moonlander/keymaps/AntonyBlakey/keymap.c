@@ -3,8 +3,6 @@
 #include "version.h"
 #include "oneshot.h"
 
-#define TABL S(KC_TAB)
-
 enum layers {
     DEF,
     SYM,
@@ -20,7 +18,27 @@ enum keycodes {
     OS_CMD,
 };
 
-enum { TD_SCLN_COLN};
+// enum { TD_SCLN_COLN};
+
+// #define TD_SCLN TD(TD_SCLN_COLN)
+
+#define TH_SFT MT(MOD_LSFT, KC_SPC)
+#define TH_NAV LT(NAV, KC_SPC)
+
+#define TH_LSFT MT(MOD_LSFT, KC_Z)
+#define TH_LCTL MT(MOD_LCTL, KC_X)
+#define TH_LALT MT(MOD_LALT, KC_C)
+#define TH_LCMD MT(MOD_LGUI, KC_V)
+
+#define TH_RCMD MT(MOD_RGUI, KC_M)
+#define TH_RALT MT(MOD_RALT, KC_COMM)
+#define TH_RCTL MT(MOD_RCTL, KC_DOT)
+#define TH_RSFT MT(MOD_RSFT, KC_SCLN)
+
+#define TH_SYM LT(SYM, KC_SPC)
+#define TH_CTL MT(MOD_RCTL, KC_SPC)
+
+#define TABL S(KC_TAB)
 
 #define G_SPC G(KC_SPC)
 #define C_GRV C(KC_GRV)
@@ -31,30 +49,12 @@ enum { TD_SCLN_COLN};
 #define G_C G(KC_C)
 #define G_V G(KC_V)
 
-#define TH_SFT MT(MOD_LSFT, KC_SPC)
-#define TH_NAV LT(NAV, KC_SPC)
-
-#define TH_LSFT MT(MOD_LSFT, KC_A)
-#define TH_LCTL MT(MOD_LCTL, KC_S)
-#define TH_LALT MT(MOD_LALT, KC_D)
-#define TH_LCMD MT(MOD_LGUI, KC_F)
-
-#define TH_RCMD MT(MOD_RGUI, KC_J)
-#define TH_RALT MT(MOD_RALT, KC_K)
-#define TH_RCTL MT(MOD_RCTL, KC_L)
-#define TH_RSFT MT(MOD_RSFT, KC_ESC)
-
-#define TH_SYM LT(SYM, KC_SPC)
-#define TH_CTL MT(MOD_LCTL, KC_SPC)
-
-#define TD_SCLN TD(TD_SCLN_COLN)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [DEF] = LAYOUT_moonlander(
         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,          XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX, 
-        XXXXXXX, TH_LSFT, TH_LCTL, TH_LALT, TH_LCMD, KC_G,    XXXXXXX,          XXXXXXX, KC_H,    TH_RCMD, TH_RALT, TH_RCTL, TH_RSFT, XXXXXXX,
-        XXXXXXX, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                               KC_N,    KC_M,    KC_COMM, KC_DOT,  TD_SCLN, XXXXXXX,
+        XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    XXXXXXX,          XXXXXXX, KC_H,    KC_J,    KC_K,    KC_L,    KC_ESC,  XXXXXXX,
+        XXXXXXX, TH_LSFT, TH_LCTL, TH_LALT, TH_LCMD, KC_B,                               KC_N,    TH_RCMD, TH_RALT, TH_RCTL, TH_RSFT, XXXXXXX,
         XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_LT,   KC_LBRC, KC_LCBR, KC_LPRN, KC_SLSH, XXXXXXX,          XXXXXXX, KC_BSLS, KC_RPRN, KC_RCBR, KC_RBRC, KC_GT,   XXXXXXX, 
         XXXXXXX, KC_GRV,  KC_QUOT, KC_DQUO, KC_DLR,  KC_HASH, XXXXXXX,          XXXXXXX, KC_PLUS, KC_MINS, KC_ASTR, KC_PERC, KC_ESC,  XXXXXXX,
         XXXXXXX, KC_EXLM, KC_TILD, KC_AMPR, KC_PIPE, KC_CIRC,                            KC_AT,   KC_UNDS, KC_QUES, KC_EQL,  KC_COLN, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_NAV,  KC_CAPS,          XXXXXXX,          XXXXXXX,          TH_SYM, TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
 
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LCMD, KC_MPLY, XXXXXXX,          XXXXXXX, TABL,    KC_BSPC, KC_ENT,  KC_TAB,  C_GRV,   XXXXXXX, 
         XXXXXXX, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  G_SPC,   XXXXXXX,          XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, GS_P,    XXXXXXX,
         XXXXXXX, G_Z,     G_X,     G_C,     G_V,     XXXXXXX,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  G_P,     XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_NAV,  TH_SFT,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
 
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX,          XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  XXXXXXX, 
         XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,          XXXXXXX, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
         XXXXXXX, KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                             XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  KC_MINS, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_NAV,  TH_SFT,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX
     ),
 };
@@ -179,6 +179,6 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 }
 
 // Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
-};
+// qk_tap_dance_action_t tap_dance_actions[] = {
+//     [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
+// };
