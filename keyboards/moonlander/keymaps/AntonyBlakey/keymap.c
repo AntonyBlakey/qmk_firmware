@@ -5,8 +5,8 @@
 
 enum layers {
     DEF,
-    SYM,
     NAV,
+    SYM,
     NUM,
 };
 
@@ -18,9 +18,6 @@ enum keycodes {
     OS_CMD,
 };
 
-// enum { TD_SCLN_COLN};
-
-// #define TD_SCLN TD(TD_SCLN_COLN)
 
 #define TH_SFT MT(MOD_LSFT, KC_SPC)
 #define TH_NAV LT(NAV, KC_SPC)
@@ -35,8 +32,8 @@ enum keycodes {
 #define TH_RCTL MT(MOD_RCTL, KC_DOT)
 #define TH_RSFT MT(MOD_RSFT, KC_SCLN)
 
-#define TH_SYM LT(SYM, KC_SPC)
-#define TH_CTL MT(MOD_RCTL, KC_SPC)
+#define TH_SYM LT(SYM, KC_ENT)
+#define TH_NUM LT(NUM, KC_ENT)
 
 #define TABL S(KC_TAB)
 
@@ -55,7 +52,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    XXXXXXX,          XXXXXXX, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    XXXXXXX, 
         XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    XXXXXXX,          XXXXXXX, KC_H,    KC_J,    KC_K,    KC_L,    KC_ESC,  XXXXXXX,
         XXXXXXX, TH_LSFT, TH_LCTL, TH_LALT, TH_LCMD, KC_B,                               KC_N,    TH_RCMD, TH_RALT, TH_RCTL, TH_RSFT, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_NUM,  XXXXXXX, XXXXXXX, XXXXXXX,
+                                   XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
+    ),
+
+    [NAV] = LAYOUT_moonlander(
+        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+        XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LCMD, KC_MPLY, XXXXXXX,          XXXXXXX, TABL,    KC_BSPC, KC_BSPC, KC_TAB,  C_GRV,   XXXXXXX, 
+        XXXXXXX, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  G_SPC,   XXXXXXX,          XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, GS_P,    XXXXXXX,
+        XXXXXXX, G_Z,     G_X,     G_C,     G_V,     XXXXXXX,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  G_P,     XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_NUM,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
 
@@ -64,16 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_LT,   KC_LBRC, KC_LCBR, KC_LPRN, KC_SLSH, XXXXXXX,          XXXXXXX, KC_BSLS, KC_RPRN, KC_RCBR, KC_RBRC, KC_GT,   XXXXXXX, 
         XXXXXXX, KC_GRV,  KC_QUOT, KC_DQUO, KC_DLR,  KC_HASH, XXXXXXX,          XXXXXXX, KC_PLUS, KC_MINS, KC_ASTR, KC_PERC, KC_ESC,  XXXXXXX,
         XXXXXXX, KC_EXLM, KC_TILD, KC_AMPR, KC_PIPE, KC_CIRC,                            KC_AT,   KC_UNDS, KC_QUES, KC_EQL,  KC_COLN, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
-                                   XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
-    ),
-
-    [NAV] = LAYOUT_moonlander(
-        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-        XXXXXXX, KC_LSFT, KC_LCTL, KC_LALT, KC_LCMD, KC_MPLY, XXXXXXX,          XXXXXXX, TABL,    KC_BSPC, KC_ENT,  KC_TAB,  C_GRV,   XXXXXXX, 
-        XXXXXXX, OS_SHFT, OS_CTRL, OS_ALT,  OS_CMD,  G_SPC,   XXXXXXX,          XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, GS_P,    XXXXXXX,
-        XXXXXXX, G_Z,     G_X,     G_C,     G_V,     XXXXXXX,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  G_P,     XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_NUM,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX 
     ),
 
@@ -82,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   XXXXXXX,          XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  XXXXXXX, 
         XXXXXXX, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    XXXXXXX,          XXXXXXX, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XXXXXXX,
         XXXXXXX, KC_F11,  KC_F12,  KC_F13,  KC_F14,  KC_F15,                             XXXXXXX, XXXXXXX, KC_COMM, KC_DOT,  KC_MINS, XXXXXXX,
-        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_CTL,  XXXXXXX, XXXXXXX, XXXXXXX,
+        XXXXXXX, XXXXXXX, XXXXXXX, TH_SFT,  TH_NAV,           XXXXXXX,          XXXXXXX,          TH_SYM,  TH_NUM,  XXXXXXX, XXXXXXX, XXXXXXX,
                                    XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX
     ),
 };
@@ -99,6 +96,8 @@ bool is_oneshot_cancel_key(uint16_t keycode) {
 bool is_oneshot_ignored_key(uint16_t keycode) {
     switch (keycode) {
         case TH_NAV: 
+        case TH_SYM: 
+        case TH_NUM: 
         case OS_SHFT:
         case OS_CTRL:
         case OS_ALT:
@@ -123,16 +122,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, SYM, NAV, NUM);
-}
-
 void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     uint8_t layer  = get_highest_layer(layer_state);
-    bool    layer0 = layer == 0;
-    bool    layer1 = layer == 1;
-    bool    layer2 = layer == 2;
-    bool    layer3 = layer == 3;
+    bool    layer_DEF = layer == 0;
+    bool    layer_NAV = layer == 1;
+    bool    layer_SYM = layer == 2;
+    bool    layer_NUM = layer == 3;
 
     rgb_matrix_set_color_all(RGB_BLACK);
     for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
@@ -158,27 +153,22 @@ void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
                 } else if (keycode == KC_BSPC) {
                     rgb_matrix_set_color(index, RGB_RED);
                     continue;
-                } else if (layer0)
+                } else if (layer_DEF)
                     rgb_matrix_set_color(index, RGB_WHITE);
-                else if (layer1)
-                    rgb_matrix_set_color(index, RGB_CYAN);
-                else if (layer2)
+                else if (layer_NAV)
                     rgb_matrix_set_color(index, RGB_GREEN);
-                else if (layer3)
+                else if (layer_SYM)
+                    rgb_matrix_set_color(index, RGB_CYAN);
+                else if (layer_NUM)
                     rgb_matrix_set_color(index, RGB_RED);
             }
         }
     }
 
-    ML_LED_1(layer1);
-    ML_LED_2(layer2);
-    ML_LED_3(layer3);
-    ML_LED_4(layer1);
-    ML_LED_5(layer2);
-    ML_LED_6(layer3);
+    ML_LED_1(layer_NAV);
+    ML_LED_2(layer_SYM);
+    ML_LED_3(layer_NUM);
+    ML_LED_4(layer_NAV);
+    ML_LED_5(layer_SYM);
+    ML_LED_6(layer_NUM);
 }
-
-// Tap Dance definitions
-// qk_tap_dance_action_t tap_dance_actions[] = {
-//     [TD_SCLN_COLN] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, KC_COLN),
-// };
